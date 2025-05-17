@@ -4,6 +4,7 @@ import type { CarInstance } from "../types";
 import { analyticsConfig } from "../utils/analytics";
 import { Plus, Fuel } from "lucide-react";
 import { AddFuelingModal } from "./AddFuelingModal";
+import { AddCarButton } from "../components/AddCarButton";
 
 export function FuelingsBlock() {
   const [carInstance, setCarInstance] = useState<CarInstance[]>([]);
@@ -31,7 +32,7 @@ export function FuelingsBlock() {
   return (
     <>
       {carInstance.map((car) => (
-        <div key={car.alias} className="bg-white rounded-lg shadow-md p-4 w-full border border-gray-200">
+        <div key={car.alias} className="bg-white rounded-lg shadow-md p-4 w-full border border-gray-200 mb-4">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold">{car.alias}</h2>
             <button
@@ -59,6 +60,10 @@ export function FuelingsBlock() {
           </div>
         </div>
       ))}
+
+      <div className="flex justify-center">
+        <AddCarButton />
+      </div>
 
       {selectedCar && (
         <AddFuelingModal
