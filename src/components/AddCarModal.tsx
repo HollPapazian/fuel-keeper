@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { supabaseClient } from "../utils/supabase";
 import { useSessionStore } from "../store/sessionStore";
+import { useDialogRef } from "../hooks/useDialogRef";
 
 interface AddCarModalProps {
   onClose: () => void;
@@ -10,15 +11,8 @@ interface AddCarModalProps {
 export function AddCarModal({ onClose, onSuccess }: AddCarModalProps) {
   const [alias, setAlias] = useState("");
   const [error, setError] = useState("");
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const { session } = useSessionStore();
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (dialog) {
-      dialog.showModal();
-    }
-  }, []);
+  const dialogRef = useDialogRef()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

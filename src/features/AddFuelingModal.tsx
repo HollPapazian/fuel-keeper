@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { supabaseClient } from '../utils/supabase';
 import type { CarInstance } from '../types';
 import { z } from 'zod';
+import { useDialogRef } from '../hooks/useDialogRef';
 
 interface AddFuelingModalProps {
   car: CarInstance;
@@ -21,14 +22,7 @@ export function AddFuelingModal({ car, onClose, onSuccess }: AddFuelingModalProp
   const [mileage, setMileage] = useState((car.fuelings.at(-1)?.mileage || 0).toString());
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const dialogRef = useRef<HTMLDialogElement>(null);
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (dialog) {
-      dialog.showModal();
-    }
-  }, []);
+  const dialogRef = useDialogRef()
 
   const validateForm = () => {
     try {
