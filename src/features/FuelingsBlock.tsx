@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { supabaseClient } from "../utils/supabase";
 import type { CarInstance } from "../types";
 import { analyticsConfig } from "../utils/analytics";
+import { Plus, Fuel } from "lucide-react";
+import { AddFuelingModal } from "./AddFuelingModal";
 
 export function FuelingsBlock() {
   const [carInstance, setCarInstance] = useState<CarInstance[]>([]);
+  const [selectedCar, setSelectedCar] = useState<CarInstance | null>(null);
 
   useEffect(() => {
     getInstruments();
@@ -16,7 +19,8 @@ export function FuelingsBlock() {
       .select(`
       *,
       fuelings(*)
-    `);
+      `);
+    console.log('data: ', data);
     if (error) {
       console.error(error)
       return;
@@ -28,7 +32,16 @@ export function FuelingsBlock() {
     <>
       {carInstance.map((car) => (
         <div key={car.alias} className="bg-white rounded-lg shadow-md p-4 w-full border border-gray-200">
-          <h2 className="text-xl font-semibold mb-4">{car.alias}</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-xl font-semibold">{car.alias}</h2>
+            <button
+              className="flex items-center gap-1 px-3 py-1.5 h-[36px] bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+              onClick={() => setSelectedCar(car)}
+            >
+              <Plus size={16} />
+              <Fuel size={16} />
+            </button>
+          </div>
 
           <div className="flex flex-wrap gap-2 mb-4">
             {Object.entries(analyticsConfig).map(([key, config]) => (
@@ -46,6 +59,14 @@ export function FuelingsBlock() {
           </div>
         </div>
       ))}
+
+      {selectedCar && (
+        <AddFuelingModal
+          car={selectedCar}
+          onClose={() => setSelectedCar(null)}
+          onSuccess={getInstruments}
+        />
+      )}
     </>
   );
 }
