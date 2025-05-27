@@ -2,9 +2,12 @@ import { Plus, Car } from "lucide-react";
 import { useState } from "react";
 import { AddCarModal } from "./AddCarModal";
 
-export function AddCarButton() {
+export function AddCarButton({ onSuccess }: { onSuccess: () => void }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const onSuccessHandler = () => {
+    setIsModalOpen(false);
+    onSuccess();
+  }
   return (
     <>
       <button
@@ -19,7 +22,7 @@ export function AddCarButton() {
       {isModalOpen && (
         <AddCarModal
           onClose={() => setIsModalOpen(false)}
-          onSuccess={() => setIsModalOpen(false)}
+          onSuccess={onSuccessHandler}
         />
       )}
     </>

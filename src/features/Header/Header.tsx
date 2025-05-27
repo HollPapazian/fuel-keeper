@@ -1,4 +1,5 @@
 // import { InstallPWA } from './InstallPWA'
+import { UserIcon } from '../../components/UserIcon/UserIcon'
 
 export const Header = () => {
   return (
@@ -11,7 +12,10 @@ export const Header = () => {
           {/* <img src="/assets/logo_mini.webp" alt="instaslide logo" className="h-10 w-10" /> */}
           <h1 className="text-2xl font-bold">Fuel Keeper</h1>
         </div>
-        {/* <InstallPWA /> */}
+        <div className="flex items-center gap-4">
+          {/* <InstallPWA /> */}
+          <UserIcon initials="AK" size={36} />
+        </div>
       </div>
     </header>
   )
