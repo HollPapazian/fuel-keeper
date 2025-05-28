@@ -108,7 +108,7 @@ export function FuelingsBlock() {
       ))}
 
       <div className="flex justify-center">
-        <AddCarButton />
+        <AddCarButton onSuccess={getInstruments} />
       </div>
 
       {selectedCar && (
