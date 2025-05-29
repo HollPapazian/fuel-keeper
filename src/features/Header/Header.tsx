@@ -1,6 +1,7 @@
 // import { InstallPWA } from './InstallPWA'
 import { UserIcon } from '../../components/UserIcon/UserIcon'
 import { useSessionStore } from '../../store/sessionStore'
+import { InstallPWA } from './InstallPWA'
 
 export const Header = () => {
   const { session } = useSessionStore()
@@ -12,7 +13,7 @@ export const Header = () => {
           <h1 className="text-2xl font-bold">Fuel Keeper</h1>
         </div>
         <div className="flex items-center gap-4">
-          {/* <InstallPWA /> */}
+          <InstallPWA />
           {session && <UserIcon initials="AK" size={36} />}
         </div>
       </div>
