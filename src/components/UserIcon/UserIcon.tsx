@@ -37,11 +37,10 @@ export const UserIcon: React.FC<UserIconProps> = ({
         style={{ 
           width: size, 
           height: size,
-          fontSize: `${size * 0.8}px`
         }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        😊
+        <span className="text-2xl">😊</span>
       </div>
       
       {isOpen && (
