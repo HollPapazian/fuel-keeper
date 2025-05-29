@@ -14,7 +14,7 @@ export const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           <InstallPWA />
-          {session && <UserIcon initials="AK" size={36} />}
+          {session && <UserIcon size={36} />}
         </div>
       </div>
     </header>

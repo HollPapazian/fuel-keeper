@@ -3,12 +3,10 @@ import { supabaseClient } from '../../utils/supabase';
 import { useSessionStore } from '../../store/sessionStore';
 
 interface UserIconProps {
-  initials?: string;
   size?: number;
 }
 
 export const UserIcon: React.FC<UserIconProps> = ({ 
-  initials = 'U', 
   size = 40 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,11 +37,11 @@ export const UserIcon: React.FC<UserIconProps> = ({
         style={{ 
           width: size, 
           height: size,
-          fontSize: `${size * 0.4}px`
+          fontSize: `${size * 0.8}px`
         }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {initials}
+        😊
       </div>
       
       {isOpen && (
