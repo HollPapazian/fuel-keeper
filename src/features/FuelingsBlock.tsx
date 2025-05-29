@@ -8,6 +8,8 @@ import { AddCarButton } from "../components/AddCarButton";
 import { Loader } from "../components/Loader";
 import { FuelingChart } from "./Chart/FuelingChart";
 import { chartCalculations } from "../utils/chartCalculations";
+import { AnalyticBlocks } from "../components/AnalyticBlocks";
+import { ChartTypeSelector } from "../components/ChartTypeSelector";
 
 export function FuelingsBlock() {
   const [carInstance, setCarInstance] = useState<CarInstance[]>([]);
@@ -74,34 +76,15 @@ export function FuelingsBlock() {
             </div>
           ) : (
             <>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {Object.entries(analyticsConfig).map(([key, config]) => (
-                  <div
-                    key={key}
-                    className={`${config.color.bg} ${config.color.text} px-3 py-1 rounded-sm text-sm`}
-                  >
-                    {config.title}: {config.formula(car.fuelings)} {config.unit}
-                  </div>
-                ))}
-              </div>
+              <AnalyticBlocks car={car} />
 
               <FuelingChart car={car} chartType={currentChartType} />
               
-              <div className="flex items-center justify-between mt-4 w-full">
-                <button
-                  onClick={handlePrevious}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <h3 className="text-lg font-medium text-gray-500">{chartCalculations[currentChartType].title}</h3>
-                <button
-                  onClick={handleNext}
-                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
+              <ChartTypeSelector
+                currentChartType={currentChartType}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+              />
             </>
           )}
         </div>
