@@ -47,12 +47,19 @@ export const UserIcon: React.FC<UserIconProps> = ({
       </div>
       
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-gray-500 rounded-md shadow-lg py-1 z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-xl py-1 z-50 border border-gray-700 transform transition-all duration-200 ease-in-out">
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-sm text-gray-100 hover:text-gray-600 bg-gray-400 hover:bg-gray-300 transition-colors"
+            className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700/50 hover:text-white transition-colors flex items-center gap-2 group relative"
           >
-            Log out
+            <span>Log out</span>
+          </button>
+          <div className="h-px bg-gray-700 my-1" />
+          <button
+            onClick={() => setIsOpen(false)}
+            className="w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-gray-700/50 hover:text-white transition-colors flex items-center gap-2 group relative"
+          >
+            <span>Close</span>
           </button>
         </div>
       )}
