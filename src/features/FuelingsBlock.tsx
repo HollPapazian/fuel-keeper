@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabaseClient } from "../utils/supabase";
 import type { CarInstance } from "../types";
-import { analyticsConfig } from "../utils/analytics";
-import { Plus, Fuel, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, Fuel } from "lucide-react";
 import { AddFuelingModal } from "./AddFuelingModal";
 import { AddCarButton } from "../components/AddCarButton";
 import { Loader } from "../components/Loader";
